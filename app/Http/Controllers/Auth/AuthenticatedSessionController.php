@@ -45,4 +45,13 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->role === 'admin') {
+            return redirect()->intended('/dashboard');
+        }
+
+        return redirect()->intended('/');
+    }
 }
