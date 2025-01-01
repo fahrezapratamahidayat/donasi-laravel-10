@@ -29,15 +29,16 @@ return new class extends Migration
 
         Schema::create('donasi_detail', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id')->unique();
             $table->foreignId('donasi_id')->constrained('donasi')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users');
             $table->string('nama_donatur');
             $table->decimal('jumlah_donasi', 10, 2);
             $table->text('keterangan')->nullable();
-            $table->enum('status_pembayaran', ['pending', 'success', 'failed', 'expired'])->default('pending');
-            $table->string('bukti_pembayaran')->nullable();
-            $table->timestamp('verified_at')->nullable();
-            $table->foreignId('verified_by')->nullable()->constrained('users');
+            $table->enum('status_pembayaran', ['pending', 'settlement', 'cancel', 'expire', 'failure']);
+            $table->string('snap_token')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->json('payment_details')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
