@@ -15,6 +15,12 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Additional Scripts -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Stack untuk CSS tambahan -->
+    @stack('styles')
 </head>
 
 <body class="font-sans antialiased" x-data="{ darkMode: false, open: false }">
@@ -25,8 +31,9 @@
                 <div class="flex justify-between h-16">
                     <!-- Logo -->
                     <div class="flex items-center">
-                        <a href="/" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                            DonasiKu
+                        <a href="/" class="flex items-center space-x-3">
+                            <img src="https://blueninja.eu/wp-content/uploads/2024/03/active-campaign-logo.webp" alt="Logo" class="h-8 w-auto">
+                            <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">DonasiKu</span>
                         </a>
                     </div>
 
@@ -91,8 +98,14 @@
         </main>
     </div>
 
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Stack untuk JavaScript tambahan -->
     @stack('scripts')
+
+    <!-- Stack untuk Modal/Popover -->
+    @stack('modals')
+
+    <!-- Stack untuk JavaScript yang perlu diload terakhir -->
+    @stack('scripts-last')
 </body>
 
 </html>

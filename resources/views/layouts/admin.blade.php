@@ -33,24 +33,27 @@
              :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}"
              class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0">
             <!-- Logo -->
-            <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-gray-700">
-                <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                    DonasiKu Admin
+            <div class="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-700">
+                <a href="{{ route('dashboard') }}" class="flex items-center space-x-3">
+                    <img src="https://blueninja.eu/wp-content/uploads/2024/03/active-campaign-logo.webp" alt="Logo" class="h-8 w-auto">
+                    <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">DonasiKu</span>
                 </a>
-                <button @click="sidebarOpen = false" class="lg:hidden">
-                    <i class="fas fa-times text-gray-500 dark:text-gray-400"></i>
+                <button @click="sidebarOpen = false" class="lg:hidden text-gray-500 hover:text-gray-600 dark:text-gray-400">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
 
             <!-- Navigation -->
-            <nav class="px-4 mt-6 space-y-2">
+            <nav class="px-4 mt-6 space-y-1.5">
                 <a href="{{ route('dashboard') }}"
-                   class="{{ request()->routeIs('dashboard') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }} flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150">
+                   class="{{ request()->routeIs('dashboard') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }}
+                          flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-150">
                     <i class="fas fa-home w-5 h-5 mr-3"></i>
                     Dashboard
                 </a>
                 <a href="{{ route('admin.donasi.index') }}"
-                   class="{{ request()->routeIs('admin.donasi.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }} flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150">
+                   class="{{ request()->routeIs('admin.donasi.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }}
+                          flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-150">
                     <i class="fas fa-hand-holding-heart w-5 h-5 mr-3"></i>
                     Kelola Donasi
                 </a>
@@ -61,42 +64,47 @@
         <div class="lg:pl-64">
             <!-- Top Navigation -->
             <div class="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-                <div class="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 px-6">
                     <!-- Mobile menu button -->
-                    <button @click="sidebarOpen = true" class="lg:hidden">
-                        <i class="fas fa-bars text-gray-500 dark:text-gray-400"></i>
+                    <button @click="sidebarOpen = true"
+                            class="lg:hidden p-2 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-400">
+                        <i class="fas fa-bars"></i>
                     </button>
 
                     <!-- Right Navigation -->
-                    <div class="flex items-center space-x-4">
-                        <!-- Dark mode toggle -->
-                        <button @click="darkMode = !darkMode" class="text-gray-500 dark:text-gray-400">
-                            <i class="fas" :class="darkMode ? 'fa-sun' : 'fa-moon'"></i>
-                        </button>
+                    <div class="flex items-center space-x-6">
 
                         <!-- Profile dropdown -->
                         <div class="relative" x-data="{ open: false }">
-                            <button @click="open = !open" class="flex items-center space-x-2">
-                                <img class="h-8 w-8 rounded-full"
-                                     src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}"
+                            <button @click="open = !open"
+                                    class="flex items-center space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-xl transition duration-150">
+                                <img class="h-8 w-8 rounded-xl object-cover"
+                                     src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=6366f1&color=fff"
                                      alt="{{ auth()->user()->name }}">
                                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
                                     {{ auth()->user()->name }}
                                 </span>
+                                <i class="fas fa-chevron-down text-xs text-gray-400"></i>
                             </button>
 
                             <div x-show="open"
                                  @click.away="open = false"
-                                 class="absolute right-0 mt-2 w-48 py-1 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+                                 x-transition:enter="transition ease-out duration-100"
+                                 x-transition:enter-start="transform opacity-0 scale-95"
+                                 x-transition:enter-end="transform opacity-100 scale-100"
+                                 x-transition:leave="transition ease-in duration-75"
+                                 x-transition:leave-start="transform opacity-100 scale-100"
+                                 x-transition:leave-end="transform opacity-0 scale-95"
+                                 class="absolute right-0 mt-2 w-48 py-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg ring-1 ring-black ring-opacity-5">
                                 <a href="{{ route('profile.edit') }}"
                                    class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Profile
+                                    <i class="fas fa-user mr-2"></i> Profile
                                 </a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit"
                                             class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                        Logout
+                                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
                                     </button>
                                 </form>
                             </div>
