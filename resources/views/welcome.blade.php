@@ -74,21 +74,21 @@
 
                 <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($campaigns as $campaign)
-                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300">
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
                         <div class="relative pb-60">
                             <img class="absolute h-full w-full object-cover rounded-t-2xl"
                                  src="{{ asset('storage/' . $campaign->gambar) }}"
                                  alt="{{ $campaign->judul_donasi }}"
                                  onerror="this.src='{{ asset('images/default-campaign.jpg') }}'">
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3 line-clamp-2 min-h-[3.5rem]">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">
                                 {{ $campaign->judul_donasi }}
                             </h3>
                             <p class="text-gray-600 text-sm line-clamp-3 mb-6">
                                 {{ $campaign->deskripsi }}
                             </p>
-                            <div class="space-y-4">
+                            <div class="space-y-4 mt-auto">
                                 <div class="relative">
                                     <div class="overflow-hidden h-2.5 rounded-full bg-indigo-100">
                                         <div style="width: {{ ($campaign->donasi_terkumpul / $campaign->target_donasi) * 100 }}%"
