@@ -26,11 +26,6 @@ Route::get('/', function () {
     return view('welcome', compact('campaigns'));
 })->name('home');
 
-// Route untuk guest (belum login)
-Route::middleware('guest')->group(function () {
-    // ... route auth lainnya dari breeze
-});
-
 // Route untuk admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', function () {
