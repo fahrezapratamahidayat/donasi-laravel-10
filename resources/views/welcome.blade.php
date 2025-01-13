@@ -18,7 +18,7 @@
                     </div>
                     <div class="flex items-center space-x-4">
                         @auth
-                            <a href="{{ auth()->user()->role === 'admin' ? route('dashboard') : route('donasi.my') }}"
+                            <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('donasi.my') }}"
                                class="text-gray-700 hover:text-indigo-600 font-medium transition duration-150">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}"
