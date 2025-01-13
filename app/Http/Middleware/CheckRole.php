@@ -12,7 +12,7 @@ class CheckRole
     {
         if (!$request->user() || !in_array($request->user()->role, $roles)) {
             if ($request->user()->role === 'admin') {
-                return redirect('/dashboard');
+                return redirect('admin/dashboard');
             }
             return redirect('/');
         }
