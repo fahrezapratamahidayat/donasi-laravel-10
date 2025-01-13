@@ -34,7 +34,7 @@
              class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0">
             <!-- Logo -->
             <div class="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-700">
-                <a href="{{ route('dashboard') }}" class="flex items-center space-x-3">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3">
                     <img src="https://blueninja.eu/wp-content/uploads/2024/03/active-campaign-logo.webp" alt="Logo" class="h-8 w-auto">
                     <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">DonasiKu</span>
                 </a>
@@ -45,7 +45,7 @@
 
             <!-- Navigation -->
             <nav class="px-4 mt-6 space-y-1.5">
-                <a href="{{ route('dashboard') }}"
+                <a href="{{ route('admin.dashboard') }}"
                    class="{{ request()->routeIs('dashboard') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }}
                           flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-150">
                     <i class="fas fa-home w-5 h-5 mr-3"></i>
@@ -57,6 +57,12 @@
                     <i class="fas fa-hand-holding-heart w-5 h-5 mr-3"></i>
                     Kelola Donasi
                 </a>
+                <a href="{{ route('admin.users.index') }}"
+                   class="{{ request()->routeIs('admin.users.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }}
+                          flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-150">
+                    <i class="fas fa-users w-5 h-5 mr-3"></i>
+                    Kelola User
+                </a>
             </nav>
         </div>
 
@@ -64,7 +70,7 @@
         <div class="lg:pl-64">
             <!-- Top Navigation -->
             <div class="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-                <div class="flex items-center justify-between h-16 px-6">
+                <div class="flex items-center justify-end h-16 px-6">
                     <!-- Mobile menu button -->
                     <button @click="sidebarOpen = true"
                             class="lg:hidden p-2 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-400">
