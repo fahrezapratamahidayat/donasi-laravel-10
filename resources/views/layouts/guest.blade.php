@@ -29,7 +29,7 @@
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col bg-auth-pattern">
             <!-- Navbar -->
-            <nav class="bg-white/80 backdrop-blur-sm border-b border-gray-100 fixed w-full z-10">
+            {{-- <nav class="bg-white/80 backdrop-blur-sm border-b border-gray-100 fixed w-full z-10">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex items-center">
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-            </nav>
+            </nav> --}}
 
             <!-- Main Content -->
             <main class="flex-grow flex items-center justify-center p-4">
