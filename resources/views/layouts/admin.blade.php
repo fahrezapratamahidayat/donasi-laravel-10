@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -126,6 +127,41 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        function showToast(message, type = 'success') {
+            Toastify({
+                text: message,
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: type === 'success' ? '#059669' : '#DC2626',
+                    color: 'white',
+                    borderRadius: '0.75rem',
+                    padding: '1rem',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    fontSize: '0.875rem',
+                    fontWeight: '500'
+                }
+            }).showToast();
+        }
+
+        // Auto show toast untuk session flash messages
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session()->has('success'))
+                showToast("{!! session('success') !!}", 'success');
+            @endif
+
+            @if(session()->has('error'))
+                showToast("{!! session('error') !!}", 'error');
+            @endif
+        });
+    </script>
+
+    @stack('scripts')
 </body>
 </html>
