@@ -32,7 +32,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/donasi', [AdminDonasiController::class, 'index'])->name('donasi.index');
     Route::get('/donasi/{id}', [AdminDonasiController::class, 'show'])->name('donasi.show');
     Route::post('/donasi/{id}/verify', [AdminDonasiController::class, 'verify'])->name('donasi.verify');
-    Route::resource('/users', UsersController::class);
+    Route::resource('users', UsersController::class);
 });
 Route::get('/donasi', [DonasiController::class, 'index'])->name('donasi.index');
 
