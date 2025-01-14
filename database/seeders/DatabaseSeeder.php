@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        \App\Models\User::factory(5)->create();
+        \App\Models\User::factory(20)->create();
     }
 }
